@@ -15,9 +15,9 @@ class Config
     private const SUPPORTED_VERSIONS = ['1.1', '2'];
 
     /** @var int How long to wait for a response from the API */
-    protected $timeout = 5;
+    protected $timeout = 15;
     /** @var int how long to wait while connecting to the API */
-    protected $connectionTimeout = 5;
+    protected $connectionTimeout = 10;
     /** @var int How many times we retry request when API is down */
     protected $maxRetries = 0;
     /** @var int Delay in seconds before we retry the request */
