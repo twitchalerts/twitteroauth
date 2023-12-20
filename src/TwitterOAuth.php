@@ -29,6 +29,8 @@ class TwitterOAuth extends Config
     private const API_HOST = 'https://api.twitter.com';
     private const UPLOAD_HOST = 'https://upload.twitter.com';
 
+    private const PERISCOPE_HOST = 'https://proxsee.pscp.tv/api';
+
     /** @var Response details about the result of the last request */
     private ?Response $response = null;
     /** @var string|null Application bearer token */
@@ -254,6 +256,24 @@ class TwitterOAuth extends Config
         return $this->http('POST', self::API_HOST, $path, $parameters, $json);
     }
 
+
+    /**
+     * Make POST requests to the API.
+     *
+     * @param string $path
+     * @param array  $parameters
+     * @param bool   $json
+     *
+     * @return array|object
+     */
+    public function postPeriscope(
+        string $path,
+        array $parameters = [],
+        bool $json = true
+    ) {
+        return $this->http('POST', self::PERISCOPE_HOST, $path, $parameters, $json);
+    }
+
     /**
      * Make DELETE requests to the API.
      *
@@ -460,6 +480,7 @@ class TwitterOAuth extends Config
         return [
             '1.1' => '.json',
             '2' => '',
+            'v2' => '',
         ][$this->apiVersion];
     }
 
@@ -671,6 +692,7 @@ class TwitterOAuth extends Config
             $authorization,
             'Expect:',
         ];
+
 
         switch ($method) {
             case 'GET':
